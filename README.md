@@ -121,6 +121,59 @@ Booting
 CLEANBUILD=true USE_COMP_MODEL=ON USE_CMSIS_NN=OFF ./build.sh
 ```
 
+## UART commands
+There are two commands supported using the UART port. You can connect a USB-to-UART
+to Teensy using this pinout:
+
+USB-to-UART | Teensy 4.0
+-|-
+Tx | 14
+Rx | 15
+GND | G
+
+Then you can use a terminal (I'm using `CuteCom`) and just send one of these commands, folowed
+by a `\n` or `\r\n` if you like, but it's not really needed:
+* `1`: Executes the `ViewModel()` function that displays information about the model. This is
+a sample output:
+```
+Model input:
+dims->size: 4
+dims->data[0]: 1
+dims->data[1]: 28
+dims->data[2]: 28
+dims->data[3]: 1
+input->type: 1
+
+Model output:
+dims->size: 2
+dims->data[0]: 1
+dims->data[1]: 10
+```
+
+* `2`: Runs the model inference. This is a sample output:
+```
+Running inference...
+DEPTHWISE_CONV_2D: 6.283290 msec
+MAX_POOL_2D: 0.829997 msec
+CONV_2D: 165.644699 msec
+MAX_POOL_2D: 0.246270 msec
+CONV_2D: 25.556931 msec
+FULLY_CONNECTED: 0.781590 msec
+FULLY_CONNECTED: 0.098000 msec
+SOFTMAX: 0.021400 msec
+Done in 199.462173 msec...
+Out[0]: 0
+Out[1]: 0
+Out[2]: 0
+Out[3]: 0
+Out[4]: 0
+Out[5]: 0
+Out[6]: 0
+Out[7]: 0
+Out[8]: 1.000000
+Out[9]: 0
+```
+
 ## Libaries versions
 * `CMSIS version`: 5.0.4
 * `CMSIS-NN version`: V.2.0.0
